@@ -1,0 +1,49 @@
+# Spring Boot configuration
+spring:
+  profiles:
+    active: development
+  # Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/carRent
+    username: postgres
+    password: password
+  # JPA properties
+  jpa:
+    hibernate:
+      ddl-auto: update # When you launch the application for the first time - switch "none" at "create"
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+# Logger configuration
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    org.springframework: info
+    org.hibernate: debug
+# Server configuration
+server:
+  port: 8080 #set your port
+# swagger
+springdoc:
+  api-docs:
+    enabled: true
+    path: /api-docs
+  swagger-ui:
+    path: /swagger
+    operations-sorter: method
+
+# Keycloak
+keycloak:
+  auth-server-url: http://localhost:8180/auth
+  realm: RentCarManagement
+  resource: rent-car-management-client
+  ssl-required: external
+  credentials:
+    secret: add35b7f-3680-47bc-aa50-c964532f9552
+  use-resource-role-mappings: true
+  bearer-only: true
+  cors: true
